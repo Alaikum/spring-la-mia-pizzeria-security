@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<th:block th:fragment="bootstrap_myStyle">
+
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Bootstrap CSS -->
+		<link th:rel="stylesheet"
+			th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}" />
+		<!--  Stile mio -->
+		<link th:href="@{/style.css}" rel="stylesheet" />
+	</th:block>
+
+	<div th:fragment="scriptBootstrap">
+		<script
+			th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.bundle.min.js}"></script>
+	</div>
+
+	<ul th:fragment="navbar(page)"
+		class="nav nav-tabs d-flex justify-content-between">
+		<li class="nav-item"><a class="nav-link">Home</a></li>
+		<li class="nav-item"><a class="nav-link">Pizze</a></li>
+		<!-- 	<li class="nav-item" >
+		<a class="nav-link" th:href="@{/movies}" th:classAppend="${page=='movies'}? active : not-active">Sedi</a>
+	</li>   -->
+
+	</ul>
+
+
+	<div th:fragment="cards__pizze">
+		<div class="row row-cols-1 row-cols-md-2 g-4">
+			<div class="col" th:each="p: ${elencoPizze}">
+				<div class="card">
+					<img th:src="${p.getFoto()}" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 th:text="${p.getNome()}" class="card-title"></h5>
+						<p class="card-text" th:text="${p.getPrezzo()}+' €'"></p>
+						<p class="card-text" th:text="${p.getDescrizione()}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<ul th:fragment="footer"
+		class="nav nav-tabs d-flex justify-content-around">
+		<li class="nav-item"><a class="nav-link">Facebook</a></li>
+		<li class="nav-item"><a class="nav-link">Instagram</a></li>
+		<li class="nav-item"><a class="nav-link">Contatti</a></li>
+
+
+	</ul>
+
+</body>
+</html>

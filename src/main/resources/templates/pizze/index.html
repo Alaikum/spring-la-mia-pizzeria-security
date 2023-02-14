@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Lista Pizze</title>
+
+<link th:replace="~{fragments :: bootstrap_myStyle}"></link>
+</head>
+<body>
+	<div th:replace="~{fragments :: navbar('pizze')}"></div>
+	<div class="container">
+
+
+		<h1>Index Pizze</h1>
+
+		<p th:if="${elencoPizze.size<1}">ELENCO VUOTO</p>
+		<div th:replace="~{fragments :: cards__pizze}"></div>
+		
+
+
+
+
+	</div>
+	<div th:replace="~{fragments :: footer}"></div>
+	<div th:replace="~{fragments :: script}"></div>
+
+</body>
+</html>
