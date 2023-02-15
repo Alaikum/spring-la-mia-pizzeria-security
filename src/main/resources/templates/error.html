@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Errori</title>
+<link th:replace="~{fragments :: bootstrap_myStyle}"></link>
+
+</head>
+
+<body>
+
+	<div class="container p-5 text-center">
+		<h1>Errore!!!</h1>
+		<a th:href="@{/}"> Torna alla Home</a>
+
+	</div>
+	<div th:replace="~{fragments :: footer}"></div>
+	<div th:replace="~{fragments :: script}"></div>
+</body>
+</html>
