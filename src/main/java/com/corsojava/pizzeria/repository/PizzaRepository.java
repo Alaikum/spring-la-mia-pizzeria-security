@@ -9,5 +9,7 @@ import com.corsojava.pizzeria.model.Pizza;
 public interface PizzaRepository extends JpaRepository<Pizza, Integer>{
 
 	public List<Pizza> findByNomeLike(String pizza);
+	
+
 
 }

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Crea la tua pizza</title>
+<link th:replace="~{fragments :: bootstrap_myStyle}"></link>
+</head>
+<body>
+
+	<div th:replace="~{fragments :: navbar}"></div>
+	<div class="container p-5">
+
+
+
+
+		<form id="pizza-form" th:object=${pizza} th:action="@{/pizze/create}"
+			method="post">
+			<h2>Crea la Tua Pizza:</h2>
+
+
+			<div class="input-group input-group-lg mt-2 ">
+				<span class="input-group-text" id="inputGroup-sizing-lg">Nome</span>
+				<input type="text" id="nome" th:field="*{nome}" class="form-control"
+					th:errorClass="is-invalid">
+				<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+					<ul>
+						<li th:each="err: ${#fields.errors('nome')}" th:text="${err}">
+						</li>
+					</ul>
+				</div>
+			</div>
+
+
+			<div class="input-group input-group-lg mt-2 ">
+				<span class="input-group-text" id="inputGroup-sizing-lg">Foto</span>
+				<input type="text" id="foto" th:field="*{foto}" class="form-control"
+					th:errorClass="is-invalid">
+				<div th:if="${#fields.hasErrors('foto')}" class="invalid-feedback">
+					<ul>
+						<li th:each="err: ${#fields.errors('foto')}" th:text="${err}">
+						</li>
+					</ul>
+				</div>
+			</div>
+
+
+			<div class="input-group input-group-lg mt-2 ">
+				<span class="input-group-text" id="inputGroup-sizing-lg">Descrizione</span>
+				<input type="text" id="foto" th:field="*{descrizione}"
+					class="form-control" th:errorClass="is-invalid">
+				<div th:if="${#fields.hasErrors('descrizione')}"
+					class="invalid-feedback">
+					<ul>
+						<li th:each="err: ${#fields.errors('descrizione')}"
+							th:text="${err}"></li>
+					</ul>
+				</div>
+			</div>
+
+
+			<div class="input-group input-group-lg mt-2 ">
+				<span class="input-group-text" id="inputGroup-sizing-lg">Prezzo</span><input
+					type="text" id="foto" th:field="*{prezzo}" class="form-control"
+					th:errorClass="is-invalid">
+				<div th:if="${#fields.hasErrors('prezzo')}" class="invalid-feedback">
+					<ul>
+						<li th:each="err: ${#fields.errors('prezzo')}" th:text="${err}">
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-lg btn-success mt-2">Crea
+				la tua pizza!</button>
+			<div th:if="${#fields.hasErrors()}">
+				<h2>Tutti gli errori:</h2>
+				<ul>
+					<li class="text-primary" th:each="err: ${#fields.allErrors()}"
+						th:text="${err}"></li>
+				</ul>
+			</div>
+
+		</form>
+	</div>
+
+
+	<div th:replace="~{fragments :: footer}"></div>
+	<div th:replace="~{fragments :: script}"></div>
+</body>
+</html>
