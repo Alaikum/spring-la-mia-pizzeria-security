@@ -22,6 +22,14 @@
 						<p class="card-text">
 							<small class="text-muted">[[${pizza.prezzo}]] €</small>
 						</p>
+						<a th:href="@{'edit/'+${pizza.id}}" class="btn btn-primary">Modifica</a>
+						<a th:href="@{/pizze}" class="btn btn-primary">Annulla</a>
+
+						<form action="#"
+							th:action="@{'/pizze/delete/{id}'(id=${pizza.id})}" method="post">
+							<button class="btn btn-danger mt-3" type="submit" id="submitButton">
+								Elimina <i class="fas fa-trash-alt"> </i>
+							</button>
 					</div>
 				</div>
 			</div>

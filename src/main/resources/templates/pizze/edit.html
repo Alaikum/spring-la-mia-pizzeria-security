@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Crea la tua pizza</title>
+<title>Edit della Pizza: [[${pizza.nome}]]</title>
 <link th:replace="~{fragments :: bootstrap_myStyle}"></link>
 </head>
 <body>
@@ -12,10 +12,9 @@
 
 
 
-
-		<form id="pizza-form" th:object=${pizza} th:action="@{/pizze/create}"
-			method="post">
-			<h2>Crea la Tua Pizza:</h2>
+		<form id="pizza-form" th:object=${pizza}
+			th:action="@{/pizze/edit/{id}(id=${pizza.id})}" method="post">
+			<h2>Modifica La Tua Pizza:</h2>
 
 
 			<div class="input-group input-group-lg mt-2 ">
@@ -70,8 +69,10 @@
 				</div>
 			</div>
 
+
 			<div class="mt-3">
-				<button class="btn btn-primary" type="submit">Crea la tua pizza!</button>
+				<button class="btn btn-primary" type="submit">Salva
+					Modifiche!</button>
 				<a class="btn btn-primary" th:href="@{/pizze}"> Annulla</a>
 			</div>
 			<div th:if="${#fields.hasErrors()}">
@@ -83,6 +84,7 @@
 			</div>
 
 		</form>
+
 	</div>
 
 
