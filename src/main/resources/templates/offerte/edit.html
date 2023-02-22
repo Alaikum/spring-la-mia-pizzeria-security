@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:replace="~{fragments :: bootstrap_myStyle}"></link>
+<title>Modifica Offerta [[${offerta.titolo}]]</title>
+</head>
+<body>
+	<div th:replace="~{fragments :: navbar}"></div>
+	<div class="container">
+		<h2>Modifica Offerta [[${offerta.titolo}]] per la pizza [[${offerta.pizza.nome}]]</h2>
+		<form id="offerta-form" th:object=${offerta}
+			th:action="@{/offerte/edit/{id}(id=${offerta.id})}" method="POST">
+			
+	
+
+			<input type="hidden" th:field="${offerta.pizza}">
+
+			<div class="input-group input-group-lg mt-2 ">
+				<label class="input-group-text" id="inputGroup-sizing-lg"
+					for="inizioOfferta">Inizio Offerta:</label> <input type="date"
+					id="inizioOfferta" th:field="*{inizioOfferta}" class="form-control"
+					th:errorClass="is-invalid">
+
+				<div th:if="${#fields.hasErrors('inizioOfferta')}"
+					class="invalid-feedback">
+					<ul>
+						<li th:each="err: ${#fields.errors('inizioOfferta')}"
+							th:text="${err}"></li>
+					</ul>
+				</div>
+			</div>
+			<div class="input-group input-group-lg mt-2 ">
+				<label class="input-group-text" id="inputGroup-sizing-lg"
+					for="fineOfferta">Fine Offerta:</label> <input type="date"
+					id="fineOfferta" th:field="*{fineOfferta}" class="form-control"
+					th:errorClass="is-invalid">
+
+				<div th:if="${#fields.hasErrors('fineOfferta')}"
+					class="invalid-feedback">
+					<ul>
+						<li th:each="err: ${#fields.errors('fineOfferta')}"
+							th:text="${err}"></li>
+					</ul>
+				</div>
+			</div>
+			<div class="input-group input-group-lg mt-2 ">
+				<label class="input-group-text" id="inputGroup-sizing-lg"
+					for="titolo">Titolo Offerta:</label> <input type="text" id="titolo"
+					th:field="*{titolo}" class="form-control"
+					th:errorClass="is-invalid">
+
+				<div th:if="${#fields.hasErrors('titolo')}" class="invalid-feedback">
+					<ul>
+						<li th:each="err: ${#fields.errors('titolo')}" th:text="${err}">
+						</li>
+					</ul>
+				</div>
+
+			</div>
+			<div class="mt-2">
+			<button class="btn btn-danger" type="submit">Modifica Offerta!</button>
+			<a class="btn btn-warning" th:href="@{/pizze}"> Annulla</a>
+			</div>
+		</form>
+
+
+
+
+	</div>
+
+
+	<div th:replace="~{fragments :: footer}"></div>
+	<div th:replace="~{fragments :: script}"></div>
+</body>
+</html>
