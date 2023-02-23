@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.corsojava.pizzeria.model.Ingrediente;
 
@@ -27,9 +27,14 @@ public class IngredienteController {
 	IngredienteRepository iRepository;
 	
 	@GetMapping()
-	public String index(Model model) {
+	public String index(@RequestParam(name = "nome", required = false) String nome, Model model) {
 		List<Ingrediente> ing;
-		ing=iRepository.findAll(Sort.by("nome"));
+		if (nome != null && !nome.isEmpty()) {
+			ing = iRepository.findByNomeLike("%" + nome + "%");
+		} else {
+			ing=iRepository.findAll(Sort.by("nome"));
+		}
+		
 		model.addAttribute("ingredienti", ing);
 		return "ingredienti/index";
 	}
