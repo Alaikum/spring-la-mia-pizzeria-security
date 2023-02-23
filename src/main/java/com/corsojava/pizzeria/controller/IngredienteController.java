@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.corsojava.pizzeria.model.Ingrediente;
-
 import com.corsojava.pizzeria.repository.IngredienteRepository;
 
 import jakarta.validation.Valid;

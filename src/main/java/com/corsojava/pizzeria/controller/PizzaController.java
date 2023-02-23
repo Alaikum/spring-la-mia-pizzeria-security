@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import com.corsojava.pizzeria.model.Ingrediente;
 import com.corsojava.pizzeria.model.Pizza;
 import com.corsojava.pizzeria.repository.IngredienteRepository;
@@ -31,7 +32,7 @@ public class PizzaController {
 
 	@Autowired
 	IngredienteRepository iRepository;
-	
+
 	@GetMapping
 	public String index(@RequestParam(name = "pizza", required = false) String pizza, Model model) {
 		List<Pizza> elencoPizze;
@@ -60,50 +61,50 @@ public class PizzaController {
 	public String create(Model model) {
 		Pizza pizza = new Pizza();
 		pizza.setFoto("https://picsum.photos/200"); // valore di default
-		List<Ingrediente> listaIngredienti=iRepository.findAll(Sort.by("nome"));  //richiamo ingredienti
+		List<Ingrediente> listaIngredienti = iRepository.findAll(Sort.by("nome")); // richiamo ingredienti
 		model.addAttribute("listaIngredienti", listaIngredienti);
 		model.addAttribute("pizza", pizza);
-		
+
 		return "pizze/create";
 	}
-	
-	//CREATE POST MAPPING
+
+	// CREATE POST MAPPING
 	@PostMapping("/create")
-	public String store(@Valid @ModelAttribute("pizza") Pizza formPizza,
-			BindingResult bindingResult,
-			Model model) {
-		//validazione
-		if(bindingResult.hasErrors()) {
+	public String store(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult, Model model) {
+		// validazione
+		if (bindingResult.hasErrors()) {
 			return "/pizze/create";
 		}
 		pizzaRepository.save(formPizza);
 		return "redirect:/pizze";
 	}
-	
-	//Edit
-	//richiesta con post e poi modifica
+
+	// Edit
+	// richiesta con post e poi modifica
 	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable("id") Integer id, Model model) {
-		Pizza pizza=pizzaRepository.getReferenceById(id);
+		Pizza pizza = pizzaRepository.getReferenceById(id);
 		model.addAttribute("pizza", pizza);
-		List<Ingrediente> listaIngredienti=iRepository.findAll(Sort.by("nome"));  //richiamo ingredienti
+		List<Ingrediente> listaIngredienti = iRepository.findAll(Sort.by("nome")); // richiamo ingredienti
 		model.addAttribute("listaIngredienti", listaIngredienti);
 		return "pizze/edit";
 	}
-	//Salva le modifiche
+
+	// Salva le modifiche
 	@PostMapping("/edit/{id}")
 	public String update(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult, Model model) {
-		if(bindingResult.hasErrors()) {
+		if (bindingResult.hasErrors()) {
 			return "pizze/edit";
 		}
 		pizzaRepository.save(formPizza);
-		
+
 		return "redirect:/pizze";
 	}
-	
-	//Delete
+
+	// Delete
 	@PostMapping("/delete/{id}")
 	public String delete(@PathVariable("id") Integer id) {
+
 		pizzaRepository.deleteById(id);
 		return "redirect:/pizze";
 	}

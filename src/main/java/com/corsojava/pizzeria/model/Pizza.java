@@ -3,6 +3,8 @@ package com.corsojava.pizzeria.model;
 import java.math.BigDecimal;
 import java.util.List;
 
+
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -48,7 +50,15 @@ public class Pizza {
 	private List<Offerta> offerte;
 	
 	@ManyToMany
+//	@OnDelete(action=OnDeleteAction.CASCADE)
+//	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	private List<Ingrediente> ingredienti;
+	
+	
+//	  public void removeIngrediente(Ingrediente ingrediente) {
+//	        this.ingredienti.remove(ingrediente);
+//	        ingrediente.getPizze().remove(this);
+//	    }
 
 	public String getNome() {
 		return nome;
