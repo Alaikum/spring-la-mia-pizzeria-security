@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Lista Ingredienti</title>
+
+<link th:replace="~{fragments :: bootstrap_myStyle}"></link>
+</head>
+<body>
+	<div th:replace="~{fragments :: navbar}"></div>
+	<div class="container">
+
+		<form>
+			<label for="fname">Cerca il tuo ingrediente:</label> <input
+				type="text" name="ingrediente"> <input type="submit"
+				value="Cerca">
+		</form>
+		<a th:href="@{ingredienti/create}" class="btn btn-success mt-5">Crea
+			il tuo ingrediente</a>
+
+		<h1>Index ingredienti:</h1>
+
+		<p th:if="${ingredienti.size<1}">ELENCO VUOTO</p>
+		<div th:each="i : ${ingredienti}">
+			<span th:text="'-'+${i.nome}"></span>
+		<div class="btn-group" role="group" aria-label="Basic example">
+			 <button
+				th:href="@{|/ingredienti/edit/${i.id}|}" class="btn btn-primary m-3">Modifica
+				Ingrediente <i class="fa-solid fa-pen-to-square"></i>
+			</button>
+			<form action="#" th:action="@{'/ingredienti/delete/{id}'(id=${i.id})}"
+				method="post">
+				<button class="btn btn-danger mt-3" type="submit" id="submitButton">
+					Elimina ingrediente <i class="fas fa-trash-alt"> </i>
+				</button>
+			</form>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="~{fragments :: footer}"></div>
+	<div th:replace="~{fragments :: script}"></div>
+
+</body>
+</html>

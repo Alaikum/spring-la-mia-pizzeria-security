@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Crea Ingrediente</title>
+
+<link th:replace="~{fragments :: bootstrap_myStyle}"></link>
+</head>
+<body>
+	<div th:replace="~{fragments :: navbar}"></div>
+	<div class="container p-5">
+
+		<form id="ingrediente-form" th:object=${ingrediente} th:action="@{/ingredienti/create}"
+			method="POST">
+			<h2>Crea il tuo Ingrediente:</h2>
+
+			<div class="input-group input-group-lg mt-2 ">
+				<span class="input-group-text" id="inputGroup-sizing-lg">Ingrediente : </span>
+				<input type="text" id="nome" th:field="*{nome}" class="form-control"
+					th:errorClass="is-invalid">
+				<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+					<ul>
+						<li th:each="err: ${#fields.errors('nome')}" th:text="${err}">
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="mt-3">
+				<button class="btn btn-primary" type="submit">Crea il tuo
+					Ingrediente!</button>
+				<a class="btn btn-primary" th:href="@{/pizze}"> Annulla</a>
+			</div>
+			<div th:if="${#fields.hasErrors()}">
+				<h2>Tutti gli errori:</h2>
+				<ul>
+					<li class="text-primary" th:each="err: ${#fields.allErrors()}"
+						th:text="${err}"></li>
+				</ul>
+			</div>
+
+		</form>
+	</div>
+
+
+
+
+
+
+
+	<div th:replace="~{fragments :: footer}"></div>
+	<div th:replace="~{fragments :: script}"></div>
+
+</body>
+</html>

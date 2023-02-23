@@ -68,6 +68,17 @@
 					</ul>
 				</div>
 			</div>
+			
+			<div class="">
+				<h3>Ingredienti</h3>
+				<div class="d-flex justify-content-between">
+				<div th:each="i : ${listaIngredienti}" class="form-check ">
+					<input type="checkbox" class="form-check-input"
+						th:value="${i.id}" th:field="*{ingredienti}"> <label
+						class="form-check-box" th:text="${i.nome}"></label>
+				</div>
+				</div>
+				</div>
 
 
 			<div class="mt-3">

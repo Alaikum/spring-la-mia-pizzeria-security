@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.corsojava.pizzeria.model.Ingrediente;
 import com.corsojava.pizzeria.model.Pizza;
+import com.corsojava.pizzeria.repository.IngredienteRepository;
 import com.corsojava.pizzeria.repository.PizzaRepository;
 
 import jakarta.validation.Valid;
@@ -27,6 +29,9 @@ public class PizzaController {
 	@Autowired
 	PizzaRepository pizzaRepository;
 
+	@Autowired
+	IngredienteRepository iRepository;
+	
 	@GetMapping
 	public String index(@RequestParam(name = "pizza", required = false) String pizza, Model model) {
 		List<Pizza> elencoPizze;
@@ -55,7 +60,10 @@ public class PizzaController {
 	public String create(Model model) {
 		Pizza pizza = new Pizza();
 		pizza.setFoto("https://picsum.photos/200"); // valore di default
+		List<Ingrediente> listaIngredienti=iRepository.findAll(Sort.by("nome"));  //richiamo ingredienti
+		model.addAttribute("listaIngredienti", listaIngredienti);
 		model.addAttribute("pizza", pizza);
+		
 		return "pizze/create";
 	}
 	
@@ -78,6 +86,8 @@ public class PizzaController {
 	public String edit(@PathVariable("id") Integer id, Model model) {
 		Pizza pizza=pizzaRepository.getReferenceById(id);
 		model.addAttribute("pizza", pizza);
+		List<Ingrediente> listaIngredienti=iRepository.findAll(Sort.by("nome"));  //richiamo ingredienti
+		model.addAttribute("listaIngredienti", listaIngredienti);
 		return "pizze/edit";
 	}
 	//Salva le modifiche

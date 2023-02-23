@@ -19,40 +19,51 @@
 					<div class="card-body">
 						<h5 class="card-title">[[${pizza.nome}]]</h5>
 						<p class="card-text">[[${pizza.descrizione}]]</p>
-						<p class="card-text">
-							<small class="text-muted">[[${pizza.prezzo}]] €</small>
-						</p>
-						<p class="card-text" th:each="o : ${pizza.offerte}">
-												<small class="text-muted  ">[[${o.titolo}]]- dal:
-												 [[${#temporals.format(o.inizioOfferta,'dd/MM/yyyy')}]]
-												  al: [[${#temporals.format(o.fineOfferta,'dd/MM/yyyy')}]] </small>
-							<a th:href="@{|/offerte/edit/${o.id}|}" class="btn btn-primary">Modifica Offerta <i class="fa-solid fa-pen-to-square"></i></a>
-						</p>
-						<p class="card-text">
-							<a class="btn btn-primary "
-								th:href="@{|/offerte/create?pizzaId=${pizza.id}|}">Crea
-								nuova offerta speciale <i class="fa-solid fa-plus"></i></a>
-						</p>
-						<a th:href="@{'edit/'+${pizza.id}}" class="btn btn-primary">Modifica
-							la Pizza <i class="fa-solid fa-pen-to-square"></i>
-						</a> <a th:href="@{/pizze}" class="btn btn-primary">Annulla <i
-							class="fa-solid fa-backward-step"></i></a>
+						<div>
+							<h3>Ingredienti:</h3>
+							<h4 th:if="${pizza.ingredienti.size<1}">Nessun ingrediente</h4>
+							<p class="card-text" th:each="i: ${pizza.ingredienti}"
+								th:text="'-'+${i.nome}"></p>
+						</div>
+						<div>
+							<p class="card-text">
+								<small class="text-muted">[[${pizza.prezzo}]] €</small>
+							</p>
+							<p class="card-text" th:each="o : ${pizza.offerte}">
+								<small class="text-muted  ">[[${o.titolo}]]- dal:
+									[[${#temporals.format(o.inizioOfferta,'dd/MM/yyyy')}]] al:
+									[[${#temporals.format(o.fineOfferta,'dd/MM/yyyy')}]] </small> <a
+									th:href="@{|/offerte/edit/${o.id}|}" class="btn btn-primary">Modifica
+									Offerta <i class="fa-solid fa-pen-to-square"></i>
+								</a>
+							</p>
+							<p class="card-text">
+								<a class="btn btn-primary "
+									th:href="@{|/offerte/create?pizzaId=${pizza.id}|}">Crea
+									nuova offerta speciale <i class="fa-solid fa-plus"></i>
+								</a>
+							</p>
+							<a th:href="@{'edit/'+${pizza.id}}" class="btn btn-primary">Modifica
+								la Pizza <i class="fa-solid fa-pen-to-square"></i>
+							</a> <a th:href="@{/pizze}" class="btn btn-primary">Annulla <i
+								class="fa-solid fa-backward-step"></i></a>
 
-						<form action="#"
-							th:action="@{'/pizze/delete/{id}'(id=${pizza.id})}" method="post">
-							<button class="btn btn-danger mt-3" type="submit"
-								id="submitButton">
-								Elimina la Pizza <i class="fas fa-trash-alt"> </i>
-							</button>
+							<form action="#"
+								th:action="@{'/pizze/delete/{id}'(id=${pizza.id})}"
+								method="post">
+								<button class="btn btn-danger mt-3" type="submit"
+									id="submitButton">
+									Elimina la Pizza <i class="fas fa-trash-alt"> </i>
+								</button>
 							</form>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
 
-	<div th:replace="~{fragments :: footer}"></div>
-	<div th:replace="~{fragments :: script}"></div>
+		<div th:replace="~{fragments :: footer}"></div>
+		<div th:replace="~{fragments :: script}"></div>
 </body>
 </html>
