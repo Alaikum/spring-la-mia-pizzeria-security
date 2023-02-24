@@ -72,6 +72,8 @@ public class PizzaController {
 	@PostMapping("/create")
 	public String store(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult, Model model) {
 		// validazione
+		List<Ingrediente> listaIngredienti = iRepository.findAll(Sort.by("nome")); // richiamo ingredienti
+		model.addAttribute("listaIngredienti", listaIngredienti);
 		if (bindingResult.hasErrors()) {
 			return "/pizze/create";
 		}
@@ -93,6 +95,8 @@ public class PizzaController {
 	// Salva le modifiche
 	@PostMapping("/edit/{id}")
 	public String update(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult, Model model) {
+		List<Ingrediente> listaIngredienti = iRepository.findAll(Sort.by("nome")); // richiamo ingredienti
+		model.addAttribute("listaIngredienti", listaIngredienti);
 		if (bindingResult.hasErrors()) {
 			return "pizze/edit";
 		}
