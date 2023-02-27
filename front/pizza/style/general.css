@@ -1,0 +1,14 @@
+* {
+	box-sizing: border-box;
+}
+
+li, lo, menu {
+	list-style: none;
+}
+img{
+	max-width:100%;
+}
+
+body {
+	background-color: lightsteelblue;
+}

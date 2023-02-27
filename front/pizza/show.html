@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Pizza</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+        integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="./style/general.css">
+</head>
+
+<body>
+
+    <div class="container p-5">
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="" class="img-fluid rounded-start" id="foto_pizza" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title" id="pizza_nome">Nome: </h5>
+                        <p class="card-text" id="pizza_descrizione">Descrizione: </p>
+                        <p class="card-text">
+                            <small class="text-muted" id="pizza_prezzo">Prezzo: </small>
+                        </p>
+                        <div>
+                            <h3 id="if_ingredienti"></h3>
+                            <p class="card-text" id="i_nome"></p>
+                        </div>
+                        <div>
+
+                            <p class="card-text">
+                            <h4 id="pizza_offerte"></h4>
+                            <small class="text-muted" id="dettaglio_offerta"></small>
+                            <a href="#" class="btn btn-primary">Modifica
+                                Offerta <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            </p>
+                            <p class="card-text">
+                                <a class="btn btn-primary " href="#">Crea
+                                    nuova offerta speciale <i class="fa-solid fa-plus"></i>
+                                </a>
+                            </p>
+                            <a href="#" class="btn btn-primary">Modifica
+                                la Pizza <i class="fa-solid fa-pen-to-square"></i>
+                            </a> <a href="./index.html" class="btn btn-primary">Annulla <i
+                                    class="fa-solid fa-backward-step"></i></a>
+
+                            <button onclick="cancellaPizza()" class="btn btn-danger mt-3" type="submit" id="submitButton">
+                                Elimina la Pizza <i class="fas fa-trash-alt"> </i>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
+            integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="./script/show.js"></script>
+</body>
+
+</html>
