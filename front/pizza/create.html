@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crea La Pizza</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+        integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="./style/general.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Crea la Pizza</h1>
+
+        <form id="pizza-form" method="post">
+
+
+            <div class="input-group input-group-lg mt-2 ">
+                <span class="input-group-text" id="inputGroup-sizing-lg">Nome</span>
+                <input type="text" id="nome" name="nome" class="form-control">
+                <div class="text-danger">
+                    <ul id="nome_err">
+                        al momento nessuna convalidazione
+                    </ul>
+                </div>
+            </div>
+
+            <div class="input-group input-group-lg mt-2 ">
+                <span class="input-group-text" id="inputGroup-sizing-lg">Foto</span>
+                <input type="text" id="foto" class="form-control" value="https://picsum.photos/200">
+                <div class="text-danger">
+                    <ul id="foto_err">
+                        al momento nessuna convalidazione
+                    </ul>
+                </div>
+            </div>
+
+            <div class="input-group input-group-lg mt-2 ">
+                <span class="input-group-text" id="inputGroup-sizing-lg">Descrizione</span>
+                <input type="text" id="descrizione" class="form-control">
+                <div class="text-danger">
+                    <ul id="descrizione_err">
+                        al momento nessuna convalidazione
+                    </ul>
+                </div>
+            </div>
+
+            <div class="input-group input-group-lg mt-2 ">
+                <span class="input-group-text" id="inputGroup-sizing-lg">Prezzo</span>
+                <input type="text" id="prezzo" class="form-control">
+                <div class="text-danger">
+                    <ul id="Prezzo_err">
+                        al momento nessuna convalidazione
+                    </ul>
+                </div>
+            </div>
+
+            <div class="">
+                <h3>Ingredienti </h3>
+                <i class="text-danger">non c'è chiamata api, lista ingredienti non modificabili!</i>
+                <div class="d-flex justify-content-between">
+                    <div class="form-check ">
+                        <input type="checkbox" class="form-check-input" id="ing_ada" value="Adamo">
+                        <label class="form-check-box">Adamo</label>
+                    </div>
+                    <div class="form-check ">
+                        <input type="checkbox" class="form-check-input" value="Mozzarella">
+                        <label class="form-check-box">Mozzarella</label>
+                    </div>
+                    <div class="form-check ">
+                        <input type="checkbox" class="form-check-input" value="Pomodoro">
+                        <label class="form-check-box">Pomodoro</label>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <div class="mt-3">
+            <button class="btn btn-primary" onclick="creaPizza()" type="submit">Crea la tua
+                pizza!</button>
+            <a class="btn btn-primary" href="./index.html"> Annulla</a>
+
+
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
+        integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./script/create.js"></script>
+</body>
+
+</html>
