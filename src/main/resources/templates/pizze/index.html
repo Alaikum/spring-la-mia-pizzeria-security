@@ -9,19 +9,19 @@
 <body>
 	<div th:replace="~{fragments :: navbar}"></div>
 	<div class="container">
+		<form>
+			<label for="fname">Cerca la tua pizza:</label> <input type="text"
+				name="pizza"> <input type="submit" value="Cerca">
+		</form>
 
-<form >
-  <label for="fname">Cerca la tua pizza:</label>
-  <input type="text" name="pizza">  
-  <input type="submit" value="Cerca">
-</form>
-<a th:href="@{pizze/create}" class="btn btn-success mt-5">Crea la tua pizza</a>
+		<a sec:authorize="hasAuthority('ADMIN')" th:href="@{pizze/create}"
+			class="btn btn-success mt-5">Crea la tua pizza</a>
 
 		<h1>Index Pizze</h1>
 
 		<p th:if="${elencoPizze.size<1}">ELENCO VUOTO</p>
 		<div th:replace="~{fragments :: cards__pizze}"></div>
-		
+
 
 
 

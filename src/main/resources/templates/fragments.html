@@ -32,8 +32,8 @@
 		class="nav nav-tabs d-flex justify-content-between">
 		<li class="nav-item"><a class="nav-link" th:href="@{'/'}">Home</a></li>
 		<li class="nav-item"><a class="nav-link" th:href="@{'/pizze'}">Pizze</a></li>
-			<li class="nav-item"><a class="nav-link" th:href="@{'/ingredienti'}">Ingredienti</a></li>
-		
+			<li sec:authorize="hasAuthority('ADMIN')" class="nav-item"><a class="nav-link" th:href="@{'/ingredienti'}">Ingredienti</a></li>
+		<li class="nav-item"><a class="nav-link" th:href="@{'/logout'}">Esci: <span sec:authentication="name"></span></a></li>
 		<!-- 	<li class="nav-item" >
 		<a class="nav-link" th:href="@{/movies}" th:classAppend="${page=='movies'}? active : not-active">Sedi</a>
 	</li>   -->
@@ -56,10 +56,10 @@
 								th:text="'-'+${i.nome}"></span>
 						</div>
 						<a class="btn btn-primary" th:href="@{'pizze/'+${p.id}}"> Qui
-							Dettaglio <i class="fa-solid fa-circle-info"></i></a> <a class="btn btn-primary"
+							Dettaglio <i class="fa-solid fa-circle-info"></i></a> <a sec:authorize="hasAuthority('ADMIN')"  class="btn btn-primary"
 							th:href="@{'pizze/edit/'+${p.id}}"> Modifica <i
 							class="fa-regular fa-pen-to-square"></i></a>
-						<form action="#" th:action="@{'/pizze/delete/{id}'(id=${p.id})}"
+						<form sec:authorize="hasAuthority('ADMIN')"  action="#" th:action="@{'/pizze/delete/{id}'(id=${p.id})}"
 							method="post">
 							<button class="btn btn-danger mt-3" type="submit" id="submitButton">
 								Elimina <i class="fas fa-trash-alt"> </i>
